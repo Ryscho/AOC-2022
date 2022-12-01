@@ -20,19 +20,21 @@ function findSum(numbers) {
     return sum;
 }
 
-function findHighestCalories(caloriesPerElf, topCount) {
+function findHighestCalories(caloriesPerElf, topElvesCount) {
     let highestCalorieCounts = [];
 
     for (const elfCalories of caloriesPerElf) {
         const calorieCount = findSum(elfCalories);
         const smallestCalorieCountSoFar = highestCalorieCounts[0];
         if (
-            highestCalorieCounts.length < topCount ||
+            highestCalorieCounts.length < topElvesCount ||
             calorieCount > smallestCalorieCountSoFar
         ) {
             highestCalorieCounts.push(calorieCount);
             highestCalorieCounts.sort((a, b) => a - b);
-            highestCalorieCounts = highestCalorieCounts.slice(-1 * topCount);
+            highestCalorieCounts = highestCalorieCounts.slice(
+                -1 * topElvesCount
+            );
         }
     }
     return findSum(highestCalorieCounts);
